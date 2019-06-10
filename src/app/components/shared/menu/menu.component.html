@@ -1,0 +1,34 @@
+<aside class="main-sidebar">
+  <section class="sidebar">
+    <ul class="sidebar-menu">
+      <li class="header" style="padding:0;position:relative;">
+        <img src="assets/images/big_banner.jpg" style="height: 230px" class="img-responsive" alt="profile">
+      </li>
+      <li class="header">MAIN NAVIGATION</li>
+      <li class="treeview" routerLinkActive="active">
+        <a [routerLink]="[ '/stock' ]">
+        <i class="fa fa-database"></i>
+        <span style="font-size: 18px;">สต๊อก</span>
+        </a>
+      </li>
+      <li class="treeview" routerLinkActive="active">
+        <a [routerLink]="[ '/shop']">
+          <i class="fa fa-shopping-basket"></i>
+          <span style="font-size: 18px;">หน้าร้าน</span>
+        </a>
+      </li>
+      <li class="treeview" routerLinkActive="active">
+        <a [routerLink]="[ '/report']">
+          <i class="fa fa-pie-chart"></i>
+          <span style="font-size: 18px;">กราฟ</span>
+        </a>
+      </li>
+      <li class="treeview" class="link_custom" routerLinkActive="active">
+        <a [routerLink]="[ '/transaction']">
+          <i class="fa fa-money"></i>
+          <span style="font-size: 18px;">รายการขาย</span>
+        </a>
+      </li>
+    </ul>
+  </section>
+</aside>

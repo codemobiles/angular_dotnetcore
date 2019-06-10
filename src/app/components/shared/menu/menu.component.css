@@ -1,0 +1,9 @@
+li:hover>a,
+li.active>a,
+li.menu-open>a {
+  color: #f39c12;
+}
+
+li.active>a {
+  border-left-color: #dd4b39;
+}
