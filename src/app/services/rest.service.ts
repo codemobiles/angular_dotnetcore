@@ -25,6 +25,7 @@ export class RestService {
 
 
   login(user: User): Observable<ResponseLogin> {
+      console.log(this.loginURL);
       return this.http.post<ResponseLogin>(this.loginURL, user, { headers: this.headers});
   }
 

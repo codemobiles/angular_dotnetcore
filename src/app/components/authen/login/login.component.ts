@@ -13,13 +13,13 @@ export class LoginComponent implements OnInit {
   ngOnInit() {
   }
 
-  onClickSubmit(form){
-    this.restServive.login(form).subscribe(
+  onClickSubmit(form) {
+    this.restServive.login(form.value).subscribe(
       data => {
-          alert(data);
+          alert(JSON.stringify(data.token));
       },
       error => {
-        alert(error);
+        alert(JSON.stringify(error));
       }
     );
   }

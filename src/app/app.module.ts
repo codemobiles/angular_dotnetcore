@@ -19,6 +19,7 @@ import { TransactionDetailComponent } from './components/transaction/transaction
 import { TransactionHomeComponent } from './components/transaction/transaction-home/transaction-home.component';
 import { from } from 'rxjs';
 import { RestService } from './services/rest.service';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -40,7 +41,8 @@ import { RestService } from './services/rest.service';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    FormsModule  // add
+    FormsModule,  // add
+    HttpClientModule // add
   ],
   providers: [
     //RestService
