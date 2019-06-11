@@ -36,6 +36,10 @@ export class RestService {
     const authenInfo = JSON.parse(localStorage.getItem(environment.keyLocalAuthenInfo));
     return authenInfo !== null;
   }
+  
+  logout() {
+    localStorage.removeItem(environment.keyLocalAuthenInfo);
+  }
 
 
 
