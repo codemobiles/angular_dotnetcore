@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
 import { HttpHeaders, HttpClient } from '@angular/common/http';
-import { User, ResponseLogin } from '../models/user.model';
+import { User, ResponseLogin, ResponseRegister } from '../models/user.model';
 import { Observable } from 'rxjs';
 
 @Injectable({
@@ -25,8 +25,11 @@ export class RestService {
 
 
   login(user: User): Observable<ResponseLogin> {
-      console.log(this.loginURL);
-      return this.http.post<ResponseLogin>(this.loginURL, user, { headers: this.headers});
+    return this.http.post<ResponseLogin>(this.loginURL, user, { headers: this.headers });
+  }
+
+  register(user: User): Observable<ResponseRegister> {
+    return this.http.post<ResponseRegister>(this.registerURL, user, { headers: this.headers });
   }
 
 

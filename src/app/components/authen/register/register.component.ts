@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { log } from 'util';
+import { RestService } from 'src/app/services/rest.service';
 
 @Component({
   selector: 'app-register',
@@ -10,13 +11,20 @@ export class RegisterComponent implements OnInit {
 
   position = ['Cashier', 'Admin'];
 
-  constructor() { }
+  constructor(private restService: RestService) { }
 
   ngOnInit() {
   }
 
   onClickSubmit(form) {
-    log(JSON.stringify(form.value));
+    this.restService.register(form.value).subscribe(
+      data => {
+        alert(JSON.stringify(data));
+      },
+      error => {
+        alert(JSON.stringify(error));
+      }
+    );
   }
 
 }
