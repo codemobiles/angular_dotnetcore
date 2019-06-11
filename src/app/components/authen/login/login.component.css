@@ -1,0 +1,16 @@
+.login-box-body {
+  background: whitesmoke;
+  border-radius: 10px;
+}
+
+.register-btn {
+  margin-top:8px;
+}
+
+.register-btn a {
+  border-color: transparent;
+}
+
+.login-logo a{
+  color: white;
+}

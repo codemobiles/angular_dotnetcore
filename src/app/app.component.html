@@ -1,6 +1,17 @@
 
-<app-header></app-header>
-<app-menu></app-menu>
+<div *ngIf="false;then shop else login">ignore content</div>
 
-<router-outlet></router-outlet>
-<app-fotter></app-fotter>
+<ng-template #shop>
+    <app-header></app-header>
+    <app-menu></app-menu>
+    <router-outlet></router-outlet>
+    <app-fotter></app-fotter>
+</ng-template>
+
+<ng-template #login>
+    <router-outlet></router-outlet>
+</ng-template>
+
+
+
+

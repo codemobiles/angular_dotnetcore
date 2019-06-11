@@ -1,3 +1,28 @@
-<p>
-  login works!
-</p>
+<div class="login-box">
+    <div class="login-logo">
+      <a href=""><b>POS</b>POS</a>
+    </div>
+    <div class="login-box-body">
+      <form #loginForm="ngForm" (ngSubmit)="onClickSubmit(loginForm)">
+        <div class="form-group has-feedback">
+          <input ngModel name="username" type="email" class="form-control" placeholder="Email">
+          <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
+        </div>
+        <div class="form-group has-feedback">
+          <input ngModel name="password" type="password" class="form-control" placeholder="Password">
+          <span class="glyphicon glyphicon-lock form-control-feedback"></span>
+        </div>
+        <div class="row">
+          <div class="col-xs-12">
+            <button type="submit" class="btn btn-primary btn-block btn-flat">LOGIN</button>
+          </div>
+        </div>
+      </form>
+      <div class="row register-btn">
+        <div class="col-xs-12">
+          <a [routerLink]="[ '/auth/register' ]" class="btn btn-block btn-flat btn-default">
+            Don't have an account?</a>
+        </div>
+      </div>
+    </div>
+  </div>

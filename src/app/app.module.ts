@@ -1,5 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { FormsModule } from '@angular/forms';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -16,6 +17,8 @@ import { StockEditComponent } from './components/stock/stock-edit/stock-edit.com
 import { StockHomeComponent } from './components/stock/stock-home/stock-home.component';
 import { TransactionDetailComponent } from './components/transaction/transaction-detail/transaction-detail.component';
 import { TransactionHomeComponent } from './components/transaction/transaction-home/transaction-home.component';
+import { from } from 'rxjs';
+import { RestService } from './services/rest.service';
 
 @NgModule({
   declarations: [
@@ -36,9 +39,12 @@ import { TransactionHomeComponent } from './components/transaction/transaction-h
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    FormsModule  // add
   ],
-  providers: [],
+  providers: [
+    //RestService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

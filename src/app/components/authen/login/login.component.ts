@@ -12,4 +12,8 @@ export class LoginComponent implements OnInit {
   ngOnInit() {
   }
 
+  onClickSubmit(form){
+    alert(`username: ${form.value.username}, password: ${form.value.password}`);
+  }
+
 }
