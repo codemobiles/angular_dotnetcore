@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
 import { HttpHeaders, HttpClient } from '@angular/common/http';
 import { User, ResponseLogin } from '../models/user.model';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -23,9 +24,11 @@ export class RestService {
   constructor(private http: HttpClient, ) { }
 
 
-  login(user: User) {
+  login(user: User): Observable<ResponseLogin> {
       return this.http.post<ResponseLogin>(this.loginURL, user, { headers: this.headers});
   }
+
+
 
 
 }
