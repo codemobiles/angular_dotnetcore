@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
 import { HttpHeaders, HttpClient } from '@angular/common/http';
+import { User, ResponseLogin } from '../models/user.model';
 
 @Injectable({
   providedIn: 'root'
@@ -17,8 +18,14 @@ export class RestService {
   private outOfStockURL = `${this.productURL}/count/out_of_stock`;
   private transactionURL = `${this.apiURL}/transaction`;
 
-  constructor() { }
 
+  // DI
+  constructor(private http: HttpClient, ) { }
+
+
+  login(user: User) {
+      return this.http.post<ResponseLogin>(this.loginURL, user, { headers: this.headers});
+  }
 
 
 }
