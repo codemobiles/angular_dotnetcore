@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { RestService } from 'src/app/services/rest.service';
+import { environment } from 'src/environments/environment';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -8,7 +10,7 @@ import { RestService } from 'src/app/services/rest.service';
 })
 export class LoginComponent implements OnInit {
 
-  constructor(private restServive: RestService) { }
+  constructor(private restServive: RestService, private router: Router) { }
 
   ngOnInit() {
   }
@@ -16,7 +18,15 @@ export class LoginComponent implements OnInit {
   onClickSubmit(form) {
     this.restServive.login(form.value).subscribe(
       data => {
-          alert(JSON.stringify(data.token));
+        if (data.token !== '') {
+          localStorage.setItem(
+            environment.keyLocalAuthenInfo, // key
+            JSON.stringify(data.token) // value
+          );
+          this.router.navigate(['stock']);
+        } else {
+          alert('token invalid');
+        }
       },
       error => {
         alert(JSON.stringify(error));

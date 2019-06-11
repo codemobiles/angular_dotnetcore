@@ -1,5 +1,5 @@
 
-<div *ngIf="false;then shop else login">ignore content</div>
+<div *ngIf="restService.isLogin();then shop else login">ignore content</div>
 
 <ng-template #shop>
     <app-header></app-header>

@@ -32,6 +32,10 @@ export class RestService {
     return this.http.post<ResponseRegister>(this.registerURL, user, { headers: this.headers });
   }
 
+  isLogin(): boolean {
+    const authenInfo = JSON.parse(localStorage.getItem(environment.keyLocalAuthenInfo));
+    return authenInfo !== null;
+  }
 
 
 
