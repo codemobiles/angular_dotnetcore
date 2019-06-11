@@ -1,0 +1,25 @@
+.login-box-body {
+  background: whitesmoke;
+  border-radius: 10px;
+}
+
+.input_confirm_password {
+  margin-bottom: 0px;
+}
+
+.alert_confirm_password {
+  color: #e44e4e;
+}
+
+.select_position {
+  margin-top: 15px;
+}
+
+.register_btn {
+  margin-top: 25px;
+}
+
+.login-logo a{
+  color: white;
+}
+

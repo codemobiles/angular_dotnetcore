@@ -1,3 +1,39 @@
-<p>
-  register works!
-</p>
+<div class="login-box">
+  <div class="login-logo">
+    <a href=""><b>POS</b>POS</a>
+  </div>
+  <div class="login-box-body">
+    <form #registerForm="ngForm" (ngSubmit)="onClickSubmit(registerForm)">
+      <div class="form-group has-feedback">
+        <input ngModel name="username" type="email" class="form-control" placeholder="Email">
+        <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
+      </div>
+      <div class="form-group has-feedback">
+        <input ngModel name="password" type="password" class="form-control" placeholder="Password">
+        <span class="glyphicon glyphicon-lock form-control-feedback"></span>
+      </div>
+      <div class="form-group has-feedback input_confirm_password">
+        <input ngModel type="password" name="confirmpassword" class="form-control" placeholder="Confirm Password">
+        <span class="glyphicon glyphicon-lock form-control-feedback"></span>
+      </div>
+
+      <div *ngIf="registerForm.value.confirmpassword !== '' && registerForm.value.password
+        !== registerForm.value.confirmpassword" class="alert_confirm_password">
+        Passwords don't match.
+      </div>
+
+      <div class="form-group" class="select_position">
+        <select class="form-control" ngModel name="position">
+          <option value="" disabled selected>select a position</option>
+          <option value="{{ item }}" *ngFor="let item of position">{{ item }}</option>
+        </select>
+      </div>
+
+      <div class="row register_btn">
+        <div class="col-xs-12">
+          <button type="submit" class="btn btn-primary btn-block btn-flat">Register</button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
