@@ -3,6 +3,7 @@ import { environment } from 'src/environments/environment';
 import { HttpHeaders, HttpClient } from '@angular/common/http';
 import { User, ResponseLogin, ResponseRegister } from '../models/user.model';
 import { Observable } from 'rxjs';
+import { ResponseProducts, ResponseOutOfStock } from '../models/product.model';
 
 @Injectable({
   providedIn: 'root'
@@ -19,10 +20,8 @@ export class RestService {
   private outOfStockURL = `${this.productURL}/count/out_of_stock`;
   private transactionURL = `${this.apiURL}/transaction`;
 
-
   // DI
   constructor(private http: HttpClient, ) { }
-
 
   login(user: User): Observable<ResponseLogin> {
     return this.http.post<ResponseLogin>(this.loginURL, user, { headers: this.headers });
@@ -36,12 +35,31 @@ export class RestService {
     const authenInfo = JSON.parse(localStorage.getItem(environment.keyLocalAuthenInfo));
     return authenInfo !== null;
   }
-  
+
   logout() {
     localStorage.removeItem(environment.keyLocalAuthenInfo);
   }
 
+  // -----------------------------------
 
+   getProducts(): Observable<ResponseProducts> {
+     this.makeJWTManual();
+     return this.http.get<ResponseProducts>(this.productURL, {headers: this.headers});
+   }
+
+   getOutOfStock(): Observable<ResponseOutOfStock> {
+    this.makeJWTManual();
+    return this.http.get<ResponseOutOfStock>(this.outOfStockURL, {headers: this.headers});
+  }
+
+   // --------------------------------
+   makeJWTManual() {
+    this.headers = new HttpHeaders({
+      'Authorization' : 'bearer ' + JSON.parse(
+        localStorage.getItem(environment.keyLocalAuthenInfo)
+      )
+    });
+  }
 
 }
 
