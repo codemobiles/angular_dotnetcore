@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Product } from 'src/app/models/product.model';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-stock-create',
@@ -7,9 +9,20 @@ import { Component, OnInit } from '@angular/core';
 })
 export class StockCreateComponent implements OnInit {
 
-  constructor() { }
+  mProduct: Product = new Product();
+
+  constructor(private location: Location) { }
 
   ngOnInit() {
+  }
+
+  submitForm() {
+    console.log(this.mProduct.name);
+    console.log(this.mProduct.price);
+  }
+
+  onClickBack() {
+    this.location.back();
   }
 
 }

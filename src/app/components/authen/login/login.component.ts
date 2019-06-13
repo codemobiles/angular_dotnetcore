@@ -13,6 +13,9 @@ export class LoginComponent implements OnInit {
   constructor(private restServive: RestService, private router: Router) { }
 
   ngOnInit() {
+    if (this.restServive.isLogin()) {
+      this.router.navigate(['stock']);
+    }
   }
 
   onClickSubmit(form) {
