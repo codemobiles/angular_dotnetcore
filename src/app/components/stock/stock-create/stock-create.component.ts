@@ -20,7 +20,15 @@ export class StockCreateComponent implements OnInit {
   }
 
   submitForm() {
-    this.restService.addProduct(this.mProduct).subscribe(
+
+
+    const formData = new FormData();
+    formData.append('name', this.mProduct.name);
+    formData.append('price', this.mProduct.price.toString());
+    formData.append('stock', this.mProduct.stock.toString());
+    formData.append('upload_file', this.mProduct.image);
+
+    this.restService.addProduct(formData).subscribe(
       data => {
           this.location.back();
       },
