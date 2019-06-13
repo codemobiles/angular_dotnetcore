@@ -20,8 +20,6 @@ export class StockCreateComponent implements OnInit {
   }
 
   submitForm() {
-
-
     const formData = new FormData();
     formData.append('name', this.mProduct.name);
     formData.append('price', this.mProduct.price.toString());

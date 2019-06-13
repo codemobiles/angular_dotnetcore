@@ -1,3 +1,86 @@
-<p>
-  stock-edit works!
-</p>
+<div class="content-wrapper">
+    <section class="content" style="max-width: 80%;">
+      <div class="row" style="margin-top: 50px;">
+        <div class="col-xs-12">
+          <section class="content">
+            <div class="box box-primary" *ngIf="mProduct != null">
+              <div class="box-header" style="margin-top:30px">
+                <div style="margin-left:5%">
+                  <img src="assets/images/ic_detail_title.png" style="width:25px;height:25px">
+                  <strong style="margin-left:5px">Product ID: {{mProduct.productId}}</strong>
+                </div>
+              </div>
+              <div class="box-body" style="margin-top:20px">
+                <form class="form-horizontal">
+                  <input type="hidden" [(ngModel)]="mProduct.productId" name="productId">
+                  <input type="hidden" [(ngModel)]="mProduct.image" name="image">
+
+                  <div class="form-group">
+                    <label class="col-sm-2 control-label">Name</label>
+                    <div class="col-sm-10">
+                      <input class="form-control" type="text" [(ngModel)]="mProduct.name" name="name" data-val="true"
+                        data-val-required="The Name field is required.">
+                    </div>
+                  </div>
+
+                  <div class="form-group" style="margin-bottom:10px">
+                    <label class="col-sm-2 control-label">Stock</label>
+                    <div class="col-sm-10">
+                      <div class="input-group box-body" style="padding-left:0;padding-top:0;">
+                        <input class="form-control" type="number" [(ngModel)]="mProduct.stock" name="stock">
+                        <span class="input-group-addon input-group-addon_custom">PCS.</span>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="form-group">
+                    <label class="col-sm-2 control-label">Price</label>
+                    <div class="col-sm-10">
+                      <div class="input-group">
+                        <input class="form-control" type="number" [(ngModel)]="mProduct.price" name="price">
+                        <span class="input-group-addon input-group-addon_custom">฿</span>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="form-group">
+                    <label class="col-sm-2 control-label">Image</label>
+                    <div class="col-sm-10">
+                      <div class="input-group">
+                        <img *ngIf="imageSrc == null && mProduct.image !== '' && mProduct.image != null"
+                          src="{{baseAPIURL}}/images/{{mProduct.image}}" style="height: 200px">
+                        <img *ngIf="imageSrc == null && mProduct.image === ''" src="assets/images/no_photo.jpg"
+                          style="height: 200px">
+                        <img *ngIf="imageSrc != null" src="{{imageSrc}}" style="height: 200px">
+                      </div>
+                    </div>
+                  </div>
+                  <div class="form-group" style="margin-top:15px">
+                    <div class="col-sm-12 col-sm-offset-2">
+                      <div>
+                        <ul class="btn-nav row" id="rcorners">
+                          <li>
+                            <span style="margin-left:2px;">
+                              <img src="assets/images/ic_photo.png" style="width:25px;height:20px">
+                              <span style="color:#00B0CD;margin-left:10px;">Change</span>
+                              <input class="picupload" accept="image/*" type="file" (change)="onUploadImage($event)">
+                            </span>
+                          </li>
+                        </ul>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="box-footer" style="margin-top:50px">
+                    <!-- <input class="btn btn-primary pull-right" style="margin-left:15px" value="Submit"
+                      (click)="onClickSubmit()">
+                    <input class="btn btn-secondary pull-right" style="margin-left:15px" value="Cancel"
+                      (click)="onClickCancel()"> -->
+                  </div>
+                </form>
+              </div>
+            </div>
+          </section>
+        </div>
+      </div>
+    </section>
+  </div>
