@@ -8,7 +8,7 @@ import { LoginComponent } from './components/authen/login/login.component';
 import { RegisterComponent } from './components/authen/register/register.component';
 import { ReportComponent } from './components/report/report.component';
 import { HeaderComponent } from './components/shared/header/header.component';
-import { FotterComponent } from './components/shared/fotter/fotter.component';
+import { footerComponent } from './components/shared/footer/footer.component';
 import { MenuComponent } from './components/shared/menu/menu.component';
 import { ShopHomeComponent } from './components/shop/shop-home/shop-home.component';
 import { ShopPaymentComponent } from './components/shop/shop-payment/shop-payment.component';
@@ -21,6 +21,7 @@ import { from } from 'rxjs';
 import { RestService } from './services/rest.service';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { JwtInterceptor } from './services/jwt.interceptor';
+import { NgxSpinnerModule } from 'ngx-spinner';
 
 @NgModule({
   declarations: [
@@ -29,7 +30,7 @@ import { JwtInterceptor } from './services/jwt.interceptor';
     RegisterComponent,
     ReportComponent,
     HeaderComponent,
-    FotterComponent,
+    footerComponent,
     MenuComponent,
     ShopHomeComponent,
     ShopPaymentComponent,
@@ -43,7 +44,8 @@ import { JwtInterceptor } from './services/jwt.interceptor';
     BrowserModule,
     AppRoutingModule,
     FormsModule,  // add
-    HttpClientModule // add
+    HttpClientModule, // add
+    NgxSpinnerModule // add
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },

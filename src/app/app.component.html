@@ -1,17 +1,16 @@
+<div *ngIf="restService.isLogin();then shop else login">here is ignored</div>
 
-<div *ngIf="restService.isLogin();then shop else login">ignore content</div>
+<ngx-spinner class="loader" bdOpacity=0 bdColor="rgba(51,51,51,0.44)" size="medium" color="#FFF" type="ball-beat"
+  [fullScreen]="true">
+  <p style="font-size: 20px; color: white">Loading...</p>
+</ngx-spinner>
 
 <ng-template #shop>
-    <app-header></app-header>
-    <app-menu></app-menu>
-    <router-outlet></router-outlet>
-    <app-fotter></app-fotter>
+  <app-header></app-header>
+  <app-menu></app-menu>
+  <router-outlet></router-outlet>
+  <app-footer></app-footer>
 </ng-template>
-
 <ng-template #login>
-    <router-outlet></router-outlet>
+  <router-outlet></router-outlet>
 </ng-template>
-
-
-
-

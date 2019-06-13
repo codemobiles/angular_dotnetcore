@@ -68,8 +68,8 @@ export class RestService {
       });
   }
 
-  addProduct(product: FormData): Observable<ResponseProducts> {
-    return this.http.post<ResponseProducts>(`${this.productURL}`, product);
+  addProduct(product: FormData): Observable<ResponseProduct> {
+    return this.http.post<ResponseProduct>(`${this.productURL}`, product);
   }
 
   getProduct(id: number): Observable<ResponseProduct> {

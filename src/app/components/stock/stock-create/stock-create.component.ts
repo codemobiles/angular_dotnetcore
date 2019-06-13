@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Product } from 'src/app/models/product.model';
 import { Location } from '@angular/common';
 import { RestService } from 'src/app/services/rest.service';
+import { NgxSpinnerService } from 'ngx-spinner';
 
 @Component({
   selector: 'app-stock-create',
@@ -14,12 +15,15 @@ export class StockCreateComponent implements OnInit {
 
   imageSrc: ArrayBuffer | string;
 
-  constructor(private restService:RestService, private location: Location) { }
+  constructor(private restService: RestService, private location: Location, private spinner: NgxSpinnerService) { }
 
   ngOnInit() {
   }
 
   submitForm() {
+
+    this.spinner.show();
+
     const formData = new FormData();
     formData.append('name', this.mProduct.name);
     formData.append('price', this.mProduct.price.toString());
@@ -28,7 +32,13 @@ export class StockCreateComponent implements OnInit {
 
     this.restService.addProduct(formData).subscribe(
       data => {
-          this.location.back();
+        const product: Product = data.result;
+        if (product != null) {
+          setTimeout(() => {
+            this.spinner.hide();
+            this.location.back();
+          }, 1000);
+        }
       },
       error => {
         console.log(JSON.stringify(error));

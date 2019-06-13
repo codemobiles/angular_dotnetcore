@@ -1,0 +1,3 @@
+.loader ::ng-deep .overlay{
+  position: fixed !important;
+}
