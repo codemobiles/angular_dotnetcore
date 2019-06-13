@@ -3,7 +3,7 @@ import { environment } from 'src/environments/environment';
 import { HttpHeaders, HttpClient } from '@angular/common/http';
 import { User, ResponseLogin, ResponseRegister } from '../models/user.model';
 import { Observable } from 'rxjs';
-import { ResponseProducts, ResponseOutOfStock } from '../models/product.model';
+import { ResponseProducts, ResponseOutOfStock, Product } from '../models/product.model';
 
 @Injectable({
   providedIn: 'root'
@@ -66,6 +66,10 @@ export class RestService {
       `${this.productURL}/${id}`, {
         headers: this.headers
       });
+  }
+
+  addProduct(product: Product): Observable<ResponseProducts> {
+    return this.http.post<ResponseProducts>(`${this.productURL}`, product);
   }
 
   // --------------------------------
