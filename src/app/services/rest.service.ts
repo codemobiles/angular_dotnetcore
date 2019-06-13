@@ -42,20 +42,36 @@ export class RestService {
 
   // -----------------------------------
 
-   getProducts(): Observable<ResponseProducts> {
-     this.makeJWTManual();
-     return this.http.get<ResponseProducts>(this.productURL, {headers: this.headers});
-   }
-
-   getOutOfStock(): Observable<ResponseOutOfStock> {
-    this.makeJWTManual();
-    return this.http.get<ResponseOutOfStock>(this.outOfStockURL, {headers: this.headers});
+  getProducts(): Observable<ResponseProducts> {
+    //  this.makeJWTManual();
+    return this.http.get<ResponseProducts>(this.productURL, { headers: this.headers });
   }
 
-   // --------------------------------
-   makeJWTManual() {
+  getOutOfStock(): Observable<ResponseOutOfStock> {
+    // this.makeJWTManual();
+    return this.http.get<ResponseOutOfStock>(this.outOfStockURL, { headers: this.headers });
+  }
+
+  searchProducts(keyword: string): Observable<ResponseProducts> {
+    // this.makeJWTManual();
+
+    return this.http.get<ResponseProducts>(
+      `${this.productURL}/search/name?keyword=${keyword}`, {
+        headers: this.headers
+      });
+  }
+
+  deleteProduct(id: number): Observable<ResponseProducts> {
+    return this.http.delete<ResponseProducts>(
+      `${this.productURL}/${id}`, {
+        headers: this.headers
+      });
+  }
+
+  // --------------------------------
+  makeJWTManual() {
     this.headers = new HttpHeaders({
-      'Authorization' : 'bearer ' + JSON.parse(
+      'Authorization': 'bearer ' + JSON.parse(
         localStorage.getItem(environment.keyLocalAuthenInfo)
       )
     });

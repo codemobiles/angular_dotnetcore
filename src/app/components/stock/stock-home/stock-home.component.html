@@ -95,7 +95,7 @@
                 <td>{{ item.stock | number }} PCS.</td>
                 <td>
                   <img src="assets/images/ic_edit.png" class="edit_product">
-                  <img src="assets/images/ic_delete.png" class="delete_product">
+                  <img (click)="deleteProduct(item.productId)" src="assets/images/ic_delete.png" class="delete_product">
                 </td>
               </tr>
             </tbody>

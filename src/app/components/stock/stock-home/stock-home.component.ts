@@ -5,6 +5,7 @@ import { environment } from 'src/environments/environment';
 import { Subject } from 'rxjs';
 
 import { debounceTime } from 'rxjs/operators';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-stock-home',
@@ -27,12 +28,24 @@ export class StockHomeComponent implements OnInit {
     this.feedData();
 
     this.searchTextChanged.pipe(
-      debounceTime(10000)
+      debounceTime(1000)
     ).subscribe(term => this.onSearch(term));
   }
 
   onSearch(term: string) {
-      console.log(term);
+
+    if (term == null || term === '') {
+      this.feedData();
+      return;
+    }
+    this.restService.searchProducts(term).subscribe(
+      data => {
+        this.mProductArray = data.result;
+      },
+      error => {
+        alert(JSON.stringify(error));
+      }
+    );
   }
 
 
@@ -42,7 +55,7 @@ export class StockHomeComponent implements OnInit {
         this.mProductArray = data.result;
       },
       error => {
-          alert(JSON.stringify(error));
+        alert(JSON.stringify(error));
       }
     );
 
@@ -59,6 +72,28 @@ export class StockHomeComponent implements OnInit {
         console.log(JSON.stringify(error));
       }
     );
+  }
+
+  deleteProduct(id: number) {
+    Swal.fire({
+      title: 'Are you sure?',
+      text: 'You won\'t be able to revert this!',
+      type: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Yes, delete it!'
+    }).then(async result => {
+      this.restService.deleteProduct(id).subscribe(
+        data => {
+            alert(data.message);
+            this.feedData();
+        },
+        error => {
+          alert(error);
+        }
+      );
+    });
   }
 
 }

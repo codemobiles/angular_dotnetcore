@@ -19,7 +19,8 @@ import { TransactionDetailComponent } from './components/transaction/transaction
 import { TransactionHomeComponent } from './components/transaction/transaction-home/transaction-home.component';
 import { from } from 'rxjs';
 import { RestService } from './services/rest.service';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { JwtInterceptor } from './services/jwt.interceptor';
 
 @NgModule({
   declarations: [
@@ -45,7 +46,8 @@ import { HttpClientModule } from '@angular/common/http';
     HttpClientModule // add
   ],
   providers: [
-    //RestService
+    { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
+    RestService
   ],
   bootstrap: [AppComponent]
 })
