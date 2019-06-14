@@ -11,7 +11,6 @@
             <ul class="card card_no_order">Waiting for Order</ul>
           </ng-template>
           <ng-template #order>
-
             <ul class="card card_orders">
               <li *ngFor="let item of mOrderArray; let index = index"
                 [ngClass]="index % 2 === 0 ? 'selected_row' : 'normal_row'">
@@ -24,12 +23,12 @@
                       </div>
                       <div class="title_product_list_item">{{item.name}}</div>
                       <div class="price_product_list_item">
-                        ฿{{item.price | number : '1.2-2'}}
+                        ฿{{item.price | number : '1.2-3'}}
                       </div>
 
                       <span style="cursor:pointer; float:right;" (click)="onClickRemoveOrder(item)">
-                          <img src="assets/images/delete.png" class="nbutton_delete">
-                        </span>
+                        <img src="assets/images/delete.png" class="nbutton_delete">
+                      </span>
                     </td>
                   </tr>
                 </table>
@@ -64,26 +63,25 @@
 
               <div *ngIf="mIsPaymentShow === false;then payment_btn else cancel_btn">here is ignored</div>
               <ng-template #payment_btn>
-                  <button (click)="onClickPayment()" class="payment_btn payment_ready btn btn-default">
-                      <strong>Payment</strong>
-                    </button>
+                <button (click)="onClickPayment()" class="payment_btn payment_ready btn btn-default">
+                  <strong>Payment</strong>
+                </button>
               </ng-template>
               <ng-template #cancel_btn>
-                  <button (click)="onClickPayment()" class="payment_btn payment_cancel btn btn-default">
-                      <strong>Cancel</strong>
-                    </button>
-                </ng-template>
+                <button (click)="onClickPayment()" class="payment_btn payment_cancel btn btn-default">
+                  <strong>Cancel</strong>
+                </button>
+              </ng-template>
 
             </div>
           </div>
           <!-- Card Payment -->
         </div>
       </div>
-
       <!-- Orders Item -->
 
       <!-- Products Item -->
-      <div *ngIf="true;then productList">here is ignored</div>
+      <div *ngIf="mIsPaymentShow === false; then productList else payment">here is ignored</div>
 
       <ng-template #productList>
         <div class="col-md-8" style="max-height: 710px;overflow-y: scroll;">
@@ -104,14 +102,14 @@
         </div>
       </ng-template>
 
-      <!-- <ng-template #payment>
+      <ng-template #payment>
         <div class="col-md-8" style="max-height: 710px;overflow-y: scroll; height:900px;">
         <div class="row" style="background-color: white; height: 100%; margin-right: 8px; margin-top: 13px;">
           <app-shop-payment (submitPayments)="onPaymentCompleted()" [orderPayment]="mOrderArray" [totalPayment]="mTotalPrice"
             class="col-md-8 col-md-offset-2" style="margin-top: 50px;"></app-shop-payment>
         </div>
       </div>
-      </ng-template> -->
+      </ng-template>
 
       <!-- Products Item -->
     </div>

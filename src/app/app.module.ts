@@ -23,6 +23,7 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { JwtInterceptor } from './services/jwt.interceptor';
 import { NgxSpinnerModule } from 'ngx-spinner';
 import { AuthenGuard } from './services/authen.guard';
+import { CustomPipe } from './pipe/custom.pipe';
 
 @NgModule({
   declarations: [
@@ -39,7 +40,8 @@ import { AuthenGuard } from './services/authen.guard';
     StockEditComponent,
     StockHomeComponent,
     TransactionDetailComponent,
-    TransactionHomeComponent
+    TransactionHomeComponent,
+    CustomPipe
   ],
   imports: [
     BrowserModule,

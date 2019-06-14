@@ -4,6 +4,7 @@ import { HttpHeaders, HttpClient } from '@angular/common/http';
 import { User, ResponseLogin, ResponseRegister } from '../models/user.model';
 import { Observable } from 'rxjs';
 import { ResponseProducts, ResponseOutOfStock, Product, ResponseProduct } from '../models/product.model';
+import { Transaction, ResponseTransaction } from '../models/transaction.model';
 
 @Injectable({
   providedIn: 'root'
@@ -78,6 +79,13 @@ export class RestService {
 
   editProduct(product: FormData, id): Observable<ResponseProducts> {
     return this.http.put<ResponseProducts>(`${this.productURL}/${id}`, product);
+  }
+
+  // ---------------------------------
+  addTransaction(tranaction: Transaction): Observable<ResponseTransaction> {
+    return this.http.post<ResponseTransaction>(`${this.transactionURL}`, tranaction, {
+      headers: this.headers
+    });
   }
 
 

@@ -13,6 +13,8 @@ export class ShopHomeComponent implements OnInit {
   mProductArray: Product[];
   mOrderArray: Product[] = new Array<Product>();
 
+  mIsPaymentShow = false;
+
   baseAPIURL = environment.baseAPIURL;
 
   mTotalPrice = 0;
@@ -44,6 +46,14 @@ export class ShopHomeComponent implements OnInit {
     this.countSumPrice();
   }
 
+
+  onClickPayment() {
+    if (this.mOrderArray.length > 0) {
+      this.mIsPaymentShow = true;
+    } else {
+      alert('please select item');
+    }
+  }
 
   countSumPrice() {
     this.mTotalPrice = 0;
