@@ -4,7 +4,7 @@ import { HttpHeaders, HttpClient } from '@angular/common/http';
 import { User, ResponseLogin, ResponseRegister } from '../models/user.model';
 import { Observable } from 'rxjs';
 import { ResponseProducts, ResponseOutOfStock, Product, ResponseProduct } from '../models/product.model';
-import { Transaction, ResponseTransaction } from '../models/transaction.model';
+import { Transaction, ResponseTransaction, ResponseTransactions } from '../models/transaction.model';
 
 @Injectable({
   providedIn: 'root'
@@ -88,6 +88,17 @@ export class RestService {
     });
   }
 
+  getTransaction(): Observable<ResponseTransactions> {
+    return this.http.get<ResponseTransactions>(`${this.transactionURL}`, {
+      headers: this.headers
+    });
+  }
+
+  getTransactionById(id: string): Observable<ResponseTransaction> {
+    return this.http.get<ResponseTransaction>(`${this.transactionURL}/${id}`, {
+      headers: this.headers
+    });
+  }
 
   // --------------------------------
   makeJWTManual() {

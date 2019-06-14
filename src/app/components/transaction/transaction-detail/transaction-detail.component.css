@@ -1,0 +1,23 @@
+th:nth-child(1) {
+  width: 3%;
+}
+
+th:nth-child(2),
+td:nth-child(2) {
+  width: 50%;
+}
+
+th:nth-child(3),
+th:nth-child(4),
+td:nth-child(1),
+td:nth-child(4) {
+  width: 5%;
+}
+
+td:nth-child(2)>span {
+  margin-right: 10px;
+}
+
+td:nth-child(2)>span>img {
+  max-width: 100px;
+}

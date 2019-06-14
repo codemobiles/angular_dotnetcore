@@ -77,4 +77,13 @@ export class ShopHomeComponent implements OnInit {
     this.countSumPrice();
   }
 
+  onPaymentCompleted() {
+    this.mProductArray = [];
+    this.mOrderArray = [];
+    this.mTotalPrice = 0;
+    this.mIsPaymentShow = false;
+
+    this.feedData();
+  }
+
 }

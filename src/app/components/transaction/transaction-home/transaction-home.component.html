@@ -1,3 +1,66 @@
-<p>
-  transaction-home works!
-</p>
+<div class="content-wrapper">
+  <section class="content">
+    <div class="box box-default">
+      <div class="box-header with-border">
+        <h4 id="j_test">Transaction</h4>
+      </div>
+      <div class="box-body">
+        <table class="table table-bordered table-striped table-hover table-transactions">
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>DATE</th>
+              <th>TIME</th>
+              <th>STAFF</th>
+              <th>CUSTOMER</th>
+              <th>TOTAL</th>
+              <th>PAID</th>
+              <th>#SKU</th>
+              <th>DISCOUNT</th>
+              <th>WAY</th>
+            </tr>
+          </thead>
+
+          <tbody>
+            <tr *ngFor="let item of mTransactionArray">
+              <td><a (click)="onClickTransactionModal(item.transactionId)">TRX:
+                  {{item.transactionId}}</a></td>
+              <td>{{item.timestamp | date: 'dd/MM/yyyy'}}</td>
+              <td>{{item.timestamp | date: 'HH:mm'}}</td>
+              <td>{{item.employeeId}}</td>
+              <td>GENERAL</td>
+              <td>฿{{item.total | number: '1.2-2'}}</td>
+              <td>
+                {{item.total == item.paid ? 'FULL' : item.paid | number : '1.2-2'}}
+              </td>
+              <td>{{getNumberOfSKU(item.orderList) | number}} SKU</td>
+              <td>฿{{item.discount | number : '1.2-2'}}</td>
+              <td>{{item.paymentType}}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+</div>
+
+
+<!-- Transaction Detail with Modal Dialog -->
+<div id="viewTransactionDetailModal" class="modal fade" role="dialog">
+  <div class="modal-dialog" style="width: 80%;">
+    <div class="modal-content">
+      <div class="modal-body">
+        <app-transaction-detail #transactionDetailModal></app-transaction-detail>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+<script>
+ 
+</script>
