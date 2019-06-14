@@ -15,6 +15,8 @@ export class StockCreateComponent implements OnInit {
 
   imageSrc: ArrayBuffer | string;
 
+  mIsSubmitted = false;
+
   constructor(private restService: RestService, private location: Location, private spinner: NgxSpinnerService) { }
 
   ngOnInit() {
@@ -34,6 +36,7 @@ export class StockCreateComponent implements OnInit {
       data => {
         const product: Product = data.result;
         if (product != null) {
+          this.mIsSubmitted = true;
           setTimeout(() => {
             this.spinner.hide();
             this.location.back();

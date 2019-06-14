@@ -9,13 +9,15 @@ import { ShopHomeComponent } from './components/shop/shop-home/shop-home.compone
 import { TransactionHomeComponent } from './components/transaction/transaction-home/transaction-home.component';
 import { TransactionDetailComponent } from './components/transaction/transaction-detail/transaction-detail.component';
 import { ReportComponent } from './components/report/report.component';
+import { AuthenGuard } from './services/authen.guard';
+import { CheckCancelFormGuard } from './services/check-cancel-form.guard';
 
 const routes: Routes = [
   { path: 'auth/login', component: LoginComponent },
   { path: 'auth/register', component: RegisterComponent },
-  { path: 'stock', component: StockHomeComponent},
-  { path: 'stock/create', component: StockCreateComponent},
-  { path: 'stock/edit/:id', component: StockEditComponent},
+  { path: 'stock', component: StockHomeComponent, canActivate: [AuthenGuard]},
+  { path: 'stock/create', component: StockCreateComponent, canActivate: [AuthenGuard], canDeactivate: [CheckCancelFormGuard]},
+  { path: 'stock/edit/:id', component: StockEditComponent, canActivate: [AuthenGuard], canDeactivate: [CheckCancelFormGuard]},
   { path: 'shop', component: ShopHomeComponent},
   { path: 'transaction', component: TransactionHomeComponent },
   { path: 'transaction/detail/:id', component: TransactionDetailComponent },

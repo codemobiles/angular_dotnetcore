@@ -22,6 +22,7 @@ import { RestService } from './services/rest.service';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { JwtInterceptor } from './services/jwt.interceptor';
 import { NgxSpinnerModule } from 'ngx-spinner';
+import { AuthenGuard } from './services/authen.guard';
 
 @NgModule({
   declarations: [
@@ -49,7 +50,8 @@ import { NgxSpinnerModule } from 'ngx-spinner';
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
-    RestService
+    RestService,
+    AuthenGuard
   ],
   bootstrap: [AppComponent]
 })

@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { Product } from 'src/app/models/product.model';
+import { RestService } from 'src/app/services/rest.service';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-shop-home',
@@ -7,9 +10,61 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ShopHomeComponent implements OnInit {
 
-  constructor() { }
+  mProductArray: Product[];
+  mOrderArray: Product[] = new Array<Product>();
+
+  baseAPIURL = environment.baseAPIURL;
+
+  mTotalPrice = 0;
+
+  constructor(private restService: RestService) { }
 
   ngOnInit() {
+    this.feedData();
+  }
+
+  feedData() {
+    this.restService.getProducts().subscribe(
+      data => {
+        this.mProductArray = data.result;
+      },
+      error => { }
+    );
+  }
+
+  onClickAddOrder(item: Product) {
+    const foundIndex = this.mOrderArray.indexOf(item);
+
+    if (foundIndex === -1) {
+      item.qty = 1;
+      this.mOrderArray.unshift(item);
+    } else {
+      item.qty++;
+    }
+    this.countSumPrice();
+  }
+
+
+  countSumPrice() {
+    this.mTotalPrice = 0;
+    for (const item of this.mOrderArray) {
+      this.mTotalPrice += item.price * item.qty;
+    }
+  }
+
+  isSelectedItem(item: Product) {
+    return this.mOrderArray.indexOf(item) === -1 ? false : true;
+  }
+
+  onClickRemoveOrder(item: Product) {
+    this.mProductArray.map(data => {
+      if (item.productId === data.productId) {
+        data.qty = null;
+      }
+    });
+
+    this.mOrderArray.splice(this.mOrderArray.indexOf(item), 1);
+    this.countSumPrice();
   }
 
 }

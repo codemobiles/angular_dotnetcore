@@ -18,8 +18,9 @@ export class StockEditComponent implements OnInit {
   imageSrc: ArrayBuffer | string;
   baseAPIURL = environment.baseAPIURL;
 
-  constructor(private location: Location,
-    private activatedRoute: ActivatedRoute, private restService: RestService) { }
+  mIsSubmitted = false;
+
+  constructor(private location: Location, private activatedRoute: ActivatedRoute, private restService: RestService) { }
 
   ngOnInit() {
     this.activatedRoute.params.subscribe(
@@ -66,7 +67,8 @@ export class StockEditComponent implements OnInit {
 
     this.restService.editProduct(formData, this.mProduct.productId).subscribe(
       data => {
-          this.location.back();
+        this.mIsSubmitted = true;
+        this.location.back();
       },
       error => {
         console.log(JSON.stringify(error));
